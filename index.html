@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fun Fact Generator</title>
+    <title>Space Exploration Fun Facts</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,11 +12,13 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background-color: #1a1a2e;
+            color: #ffffff;
         }
 
         .container {
             text-align: center;
+            max-width: 500px;
         }
 
         button {
@@ -33,23 +35,37 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        #factDisplay {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #eeeeee;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Fun Fact Generator</h1>
-        <button id="promptButton">Generate Fun Fact</button>
+        <h1>Space Exploration Fun Facts</h1>
+        <button id="generateFactButton">Generate Fun Fact</button>
+        <div id="factDisplay"></div>
     </div>
     <script>
-        document.getElementById('promptButton').addEventListener('click', function() {
-            const promptMessage = "Generate a fun fact about someone who loves hiking and has traveled to five national parks.";
-            const userResponse = prompt(promptMessage);
-            if (userResponse) {
-                alert(`You entered: ${userResponse}`);
-            } else {
-                alert("No input provided.");
-            }
+        const spaceFacts = [
+            "The first man-made object in space was the Soviet satellite Sputnik, launched in 1957.",
+            "Humans first landed on the Moon on July 20, 1969, during NASA's Apollo 11 mission.",
+            "Mars is home to the largest volcano in the solar system, Olympus Mons, which is nearly three times the height of Mount Everest.",
+            "The International Space Station orbits Earth at a speed of 28,000 km/h (17,500 mph).",
+            "The Hubble Space Telescope has provided images of galaxies billions of light-years away.",
+            "Neutron stars are so dense that a sugar-cube-sized amount of their material would weigh about a billion tons on Earth.",
+            "The Voyager 1 spacecraft, launched in 1977, is the most distant human-made object, traveling beyond our solar system.",
+        ];
+
+        document.getElementById('generateFactButton').addEventListener('click', function () {
+            const randomFact = spaceFacts[Math.floor(Math.random() * spaceFacts.length)];
+            document.getElementById('factDisplay').textContent = randomFact;
         });
     </script>
 </body>
 </html>
+
