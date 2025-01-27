@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Exploration Fun Facts</title>
+    <title>Ocean Life Fun Facts</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,20 +12,23 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #1a1a2e;
+            background-color: #0077be;
             color: #ffffff;
+            overflow: hidden;
+            position: relative;
         }
 
         .container {
             text-align: center;
-            max-width: 500px;
+            max-width: 600px;
+            z-index: 10;
         }
 
         button {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-            background-color: #007BFF;
+            background-color: #005f99;
             color: white;
             border: none;
             border-radius: 5px;
@@ -33,39 +36,116 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #003f66;
         }
 
         #factDisplay {
             margin-top: 20px;
             font-size: 18px;
-            color: #eeeeee;
+            color: #e0f7fa;
             font-weight: bold;
+        }
+
+        .ocean-image {
+            width: 300px;
+            margin-top: 20px;
+            border-radius: 10px;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .ocean-image:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animation for bubbles */
+        .bubble {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: rise 6s infinite ease-in-out;
+        }
+
+        .bubble:nth-child(1) {
+            width: 20px;
+            height: 20px;
+            left: 10%;
+            animation-delay: 1s;
+        }
+
+        .bubble:nth-child(2) {
+            width: 30px;
+            height: 30px;
+            left: 25%;
+            animation-delay: 2s;
+        }
+
+        .bubble:nth-child(3) {
+            width: 15px;
+            height: 15px;
+            left: 40%;
+            animation-delay: 3s;
+        }
+
+        .bubble:nth-child(4) {
+            width: 25px;
+            height: 25px;
+            left: 60%;
+            animation-delay: 4s;
+        }
+
+        .bubble:nth-child(5) {
+            width: 35px;
+            height: 35px;
+            left: 80%;
+            animation-delay: 5s;
+        }
+
+        @keyframes rise {
+            from {
+                bottom: -50px;
+                opacity: 0;
+            }
+            to {
+                bottom: 100%;
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Bubbles -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
     <div class="container">
-        <h1>Space Exploration Fun Facts</h1>
+        <h1>Ocean Life Fun Facts</h1>
         <button id="generateFactButton">Generate Fun Fact</button>
         <div id="factDisplay"></div>
+        <img id="oceanImage" class="ocean-image" src="" alt="Ocean Life" style="display:none;">
     </div>
+
     <script>
-        const spaceFacts = [
-            "The first man-made object in space was the Soviet satellite Sputnik, launched in 1957.",
-            "Humans first landed on the Moon on July 20, 1969, during NASA's Apollo 11 mission.",
-            "Mars is home to the largest volcano in the solar system, Olympus Mons, which is nearly three times the height of Mount Everest.",
-            "The International Space Station orbits Earth at a speed of 28,000 km/h (17,500 mph).",
-            "The Hubble Space Telescope has provided images of galaxies billions of light-years away.",
-            "Neutron stars are so dense that a sugar-cube-sized amount of their material would weigh about a billion tons on Earth.",
-            "The Voyager 1 spacecraft, launched in 1977, is the most distant human-made object, traveling beyond our solar system.",
+        const oceanFacts = [
+            { fact: "The blue whale is the largest animal on Earth, growing up to 100 feet long.", image: "https://via.placeholder.com/300?text=Blue+Whale" },
+            { fact: "Octopuses have three hearts and blue blood.", image: "https://via.placeholder.com/300?text=Octopus" },
+            { fact: "The Great Barrier Reef is the largest living structure on the planet, visible even from space.", image: "https://via.placeholder.com/300?text=Great+Barrier+Reef" },
+            { fact: "Sea otters hold hands when they sleep to keep from drifting apart.", image: "https://via.placeholder.com/300?text=Sea+Otter" },
+            { fact: "Jellyfish have been around for over 500 million years, predating dinosaurs.", image: "https://via.placeholder.com/300?text=Jellyfish" },
+            { fact: "Only 5% of the ocean has been explored by humans.", image: "https://via.placeholder.com/300?text=Ocean+Mystery" }
         ];
 
+        const factDisplay = document.getElementById('factDisplay');
+        const oceanImage = document.getElementById('oceanImage');
+
         document.getElementById('generateFactButton').addEventListener('click', function () {
-            const randomFact = spaceFacts[Math.floor(Math.random() * spaceFacts.length)];
-            document.getElementById('factDisplay').textContent = randomFact;
+            const randomFact = oceanFacts[Math.floor(Math.random() * oceanFacts.length)];
+            factDisplay.textContent = randomFact.fact;
+            oceanImage.src = randomFact.image;
+            oceanImage.style.display = "block";
         });
     </script>
 </body>
 </html>
-
